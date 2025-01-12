@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://42iij3va62ck"
+path="res://.godot/imported/fiat_126p.obj-30613dac1ce928a745f5ac143dee6c1d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fiat_126p.obj-30613dac1ce928a745f5ac143dee6c1d.mesh"]
+
+source_file="res://scenes/vehicles/fiat_126p/fiat_126p.obj"
+dest_files=["res://.godot/imported/fiat_126p.obj-30613dac1ce928a745f5ac143dee6c1d.mesh", "res://.godot/imported/fiat_126p.obj-30613dac1ce928a745f5ac143dee6c1d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

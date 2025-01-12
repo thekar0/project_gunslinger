@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bou05s8prr6hk"]
+
+[ext_resource type="PackedScene" uid="uid://bmu4lr3plw3a8" path="res://scenes/ui/main_menu_background.tscn" id="1_su323"]
+[ext_resource type="PackedScene" uid="uid://15nrpg3r7pcx" path="res://scenes/ui/main_menu_ui.tscn" id="2_3qgad"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node3D" parent="." instance=ExtResource("1_su323")]
+script = null
+
+[node name="Control" parent="." instance=ExtResource("2_3qgad")]
+layout_mode = 1

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://btv0a42cgxt8g"]
+
+[ext_resource type="Environment" uid="uid://dsay4gdr8k6ur" path="res://environment/WE_test.tres" id="1_cvy6j"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource("1_cvy6j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.948518, 0.0202229, -0.316076, -0.191735, -0.83098, 0.522216, -0.252092, 0.555934, 0.792078, 0, 0, 0)
+shadow_enabled = true

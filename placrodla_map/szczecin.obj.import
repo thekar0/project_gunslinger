@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c10uq47ilbl0f"
+path="res://.godot/imported/szczecin.obj-b56ad8fe626f3f459c931c5b13f80310.mesh"
+
+[deps]
+
+files=["res://.godot/imported/szczecin.obj-b56ad8fe626f3f459c931c5b13f80310.mesh"]
+
+source_file="res://placrodla_map/szczecin.obj"
+dest_files=["res://.godot/imported/szczecin.obj-b56ad8fe626f3f459c931c5b13f80310.mesh", "res://.godot/imported/szczecin.obj-b56ad8fe626f3f459c931c5b13f80310.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
