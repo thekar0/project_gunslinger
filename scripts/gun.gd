@@ -56,11 +56,9 @@ func _shoot(rayCast: RayCast3D, head: Node3D,delta: float):
 		light.visible = false
 		
 		if rayCast.is_colliding():
-			print("collidning")
 			if(rayCast.get_collider().is_in_group("enemies")):
 				rayCast.get_collider().damage()
 			else:
-				#bullet decal
 				var instance = decal.instantiate()
 				get_tree().root.add_child(instance)
 				instance.global_position = rayCast.get_collision_point()
