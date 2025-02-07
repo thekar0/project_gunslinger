@@ -519,7 +519,7 @@ noise = SubResource("FastNoiseLite_c2fpl")
 noise_speed = 100.0
 
 [node name="gun" parent="CameraController/recoil/Camera3D" instance=ExtResource("3_bd233")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.42, -0.77, -0.775)
+transform = Transform3D(0.245, 0, 0, 0, 0.245, 0, 0, 0, 0.245, 0, 0, 0)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/recoil/Camera3D"]
 update_mode = 1

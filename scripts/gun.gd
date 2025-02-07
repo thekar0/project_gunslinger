@@ -5,22 +5,51 @@ signal shake
 var decal = preload("res://scenes/objects/small_objects/decal.tscn") 
 
 @onready var camera_3d: Camera3D = %Camera3D
-@onready var gun_anim: AnimationPlayer = $AnimationPlayer
+@onready var gun_anim: AnimationPlayer = $glock2/AnimationPlayer
+@onready var hand_anim: AnimationPlayer = $hands/AnimationPlayer
 @onready var flash: GPUParticles3D = $MuzzleFlash/GPUParticles3D
 @onready var light: OmniLight3D = $MuzzleFlash/OmniLight3D
+@onready var hands_anim_tree : AnimationTree = $hands/AnimationTree
+@onready var gun_anim_tree : AnimationTree = $glock2/AnimationTree
 var flash_time = 0.05
 
 var recoil = 0.12
 var head_rotation
 
+var shooting = false
+var prevanim = ""
+enum {IDLE, WALK}
+var currAnim = IDLE
+
 func _ready() -> void:
 	light.visible = false
+	
+func _AnimInfo(anim):
+	if anim == "Walk":
+		currAnim = WALK
+	elif anim == "Idle":
+		currAnim = IDLE
+	_playAnim()
+
+
+func _playAnim():		
+	match currAnim:
+		IDLE:
+			hands_anim_tree.set("parameters/Movement/transition_request", "idle")
+			gun_anim_tree.set("parameters/Movement/transition_request", "idle")
+		WALK:
+			hands_anim_tree.set("parameters/Movement/transition_request", "walk")
+			gun_anim_tree.set("parameters/Movement/transition_request", "walk")
 
 func _shoot(rayCast: RayCast3D, head: Node3D,delta: float):
-	if !gun_anim.is_playing():
-		gun_anim.play("shoot")
+	shooting = true
+	if  true: #!gun_anim.is_playing():
+		#_playAnim("Fire")
+		hands_anim_tree.set("parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		gun_anim_tree.set("parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		#camera_3d.add_trauma(3.0)
 		#muzzle flash
+		shooting = false
 		light.visible = true
 		flash.emitting = true
 		await get_tree().create_timer(flash_time).timeout

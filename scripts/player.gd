@@ -47,6 +47,8 @@ var current_hand : String = "right"
 @onready var hand = $CameraController/recoil/Camera3D/Hand
 @onready var usage_ray_cast: RayCast3D = $CameraController/recoil/Camera3D/usage_ray_cast
 @onready var shoot_ray_cast: RayCast3D = $CameraController/recoil/Camera3D/shoot_ray_cast
+@onready var gun_anim: AnimationPlayer = $glock2/AnimationPlayer
+@onready var hand_anim: AnimationPlayer = $hands/AnimationPlayer
 var activeObject
 #FOR OBJECT PICKING
 
@@ -106,8 +108,17 @@ func update_input(speed: float, delta) -> void:
 			velocity = accelerate(wishdir, delta, GROUND_ACCEL, MAX_SPEED_GROUND)
 			speed = velocity.length()
 			if speed != 0:
+				if speed > 2:
+					gun._AnimInfo("Walk")
+				else:
+					print(speed)
+					gun._AnimInfo("Idle")
 				var drop = speed * FRICTION * delta
 				velocity *= max(speed - drop, 0) / speed
+				print(speed)
+			else:
+				print(speed)
+				gun._AnimInfo("Idle")
 		else:
 			velocity = accelerate(wishdir, delta, AIR_ACCEL, MAX_SPEED_AIR)
 			
