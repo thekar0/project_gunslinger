@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://1jnl31q6vv4q"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_exauf"]
+[ext_resource type="ArrayMesh" uid="uid://bx83hvel5kxvk" path="res://guns/model_19_orange/model19_orange.obj" id="2_mqlvt"]
+[ext_resource type="Texture2D" uid="uid://wxvtyim1v75n" path="res://particles/scorch_02.png" id="2_n4y82"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbafm"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_n4y82")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_67bya"]
+colors = PackedColorArray(0.976581, 0.980897, 7.70092e-07, 1, 0.520329, 0.396683, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pfthy"]
+gradient = SubResource("Gradient_67bya")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbhxk"]
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(1, 1, 1)
+spread = 0.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_pfthy")
+turbulence_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_adljr"]
+
+[sub_resource type="Animation" id="Animation_imdkm"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh/Model19")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_t3dq7"]
+resource_name = "shoot"
+length = 0.27
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh/Model19")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, -2.31199e-08, -1.56983e-15, -0.528923, 0.84867, 0.244151, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ahkb"]
+_data = {
+"RESET": SubResource("Animation_imdkm"),
+"shoot": SubResource("Animation_t3dq7")
+}
+
+[node name="gun" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_exauf")
+
+[node name="mesh" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Model19" type="MeshInstance3D" parent="mesh"]
+mesh = ExtResource("2_mqlvt")
+skeleton = NodePath("../..")
+
+[node name="MuzzleFlash" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.48653, -6.80109)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MuzzleFlash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.738097, 0.163813)
+material_override = SubResource("StandardMaterial3D_vbafm")
+emitting = false
+amount = 2
+lifetime = 0.05
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rbhxk")
+draw_pass_1 = SubResource("QuadMesh_adljr")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.461345, 0.096251)
+visible = false
+light_color = Color(0.964844, 0.939374, 0.31282, 1)
+light_energy = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ahkb")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5.41893, -6.36113)
+target_position = Vector3(0, 0, -2)

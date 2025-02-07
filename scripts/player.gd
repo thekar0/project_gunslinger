@@ -5,9 +5,9 @@ extends CharacterBody3D
 const MAX_SPEED_GROUND = 7
 const MAX_SPEED_AIR = 4
 const GROUND_ACCEL = MAX_SPEED_GROUND * 10
-const AIR_ACCEL = MAX_SPEED_AIR * 3
+const AIR_ACCEL = MAX_SPEED_AIR * 4
 const FRICTION = 7
-const JUMP_VELOCITY = 4
+const JUMP_VELOCITY = 5
 const GRAVITY = 11
 
 # CAMERA MOVEMENT
@@ -33,14 +33,19 @@ var instance
 var current_hand : String = "right"
 
 # Base animation player for all animations
+@onready var model_19 = $CameraController/recoil/Camera3D/model_19
+@onready var model_19_blue = $CameraController/recoil/Camera3D/model_19_blue
+@onready var model_19_orange = $CameraController/recoil/Camera3D/model_19_orange
 
-
+@onready var guns = [model_19, model_19_blue, model_19_orange]
 
 @onready var cross_hair: CenterContainer = $CenterContainer
 @onready var player = $"."
-@onready var gun = $CameraController/recoil/Camera3D/gun
+
+@onready var gun = $CameraController/recoil/Camera3D/model_19
+@onready var ANIMATION_GUN : AnimationPlayer = $CameraController/recoil/Camera3D/model_19/AnimationPlayer
+
 @onready var CAMERA_CONTROLLER: Node3D = $CameraController
-@onready var ANIMATION_GUN : AnimationPlayer = $CameraController/recoil/Camera3D/gun/AnimationPlayer
 @onready var spawn_point : Node3D = $"../SpawnPoint"
 @onready var camera_pivot = %Camera3D
 #FOR OBJECT PICKING
@@ -59,14 +64,12 @@ var can_move = true
 var gravity = 9.0
 
 func _ready() -> void:
-	Engine.time_scale = 1
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
-	#_update_camera(delta)
 	CAMERA_CONTROLLER.rotation_degrees.z = 0
-	if can_shoot and is_on_floor():
+	if can_shoot:
 		if Input.is_action_just_pressed("shoot"):
 			gun._shoot(shoot_ray_cast,CAMERA_CONTROLLER,delta)
 	
@@ -75,13 +78,16 @@ func _physics_process(delta: float) -> void:
 	aim_n_shoot(delta)
 	object_picking()
 	debug_screen(delta)
-	
-#funckja w komentaerzu bo kolidowała z gun recoil
-#func _unhandled_input(event: InputEvent) -> void:
-	#_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	#if _mouse_input:
-		#_rotation_input = -event.relative.x * MOUSE_SENSITIVITY / 10
-		#_tilt_input = -event.relative.y * MOUSE_SENSITIVITY / 10
+	activate_chest()
+
+func activate_chest():
+	if Input.is_action_just_pressed("use") and usage_ray_cast.get_collider() != null and usage_ray_cast.get_collider().name == "Chest":
+		if usage_ray_cast.get_collider().lottery_available == true:
+			usage_ray_cast.get_collider().player = player
+			usage_ray_cast.get_collider().lottery()
+		elif usage_ray_cast.get_collider().lottery_available == false:
+			usage_ray_cast.get_collider().take_gun()
+#Reference w chest.gd
 
 func _input(event: InputEvent) -> void:
 	# toggle_fullscreen = F11
@@ -112,8 +118,6 @@ func update_input(speed: float, delta) -> void:
 			velocity = accelerate(wishdir, delta, AIR_ACCEL, MAX_SPEED_AIR)
 			
 		velocity.y -= GRAVITY * delta
-		velocity.x = clamp(velocity.x, -10, 10)
-		velocity.z = clamp(velocity.z, -10, 10)
 
 func accelerate(direction, delta, ACCEL_TYPE, MAX_SPEED):
 	var proj_vel = velocity.dot(direction)
@@ -126,26 +130,7 @@ func update_velocity() -> void:
 	move_and_slide()
 #FOR PLAYERSTATE MACHINES
 
-#DEVELOPER to samo co wcześniej funckja w komentaerzu bo kolidowała z gun recoil
-#func _update_camera(delta):
-	#_current_rotation = _rotation_input
-	#
-	## Rotates camera using euler rotation
-	#_mouse_rotation.x += _tilt_input * delta
-	#_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
-	#_mouse_rotation.y += _rotation_input * delta
-	#
-	#_player_rotation = Vector3(0.0,_mouse_rotation.y,0.0)
-	#_camera_rotation = Vector3(_mouse_rotation.x,0.0,0.0)
-	#
-	#CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
-	#global_transform.basis = Basis.from_euler(_player_rotation)
-	#
-	#CAMERA_CONTROLLER.rotation.z = 0.0
-	#
-	#_rotation_input = 0.0
-	#_tilt_input = 0.0
-	#
+
 func debug_screen(delta):
 	# while vsync is on, fps stay at monitor refresh rate
 	var frames_per_second : String = "%.0f" % (1.0/delta)
@@ -174,19 +159,7 @@ func aim_n_shoot(delta):
 		gun.position.x = lerp(gun.position.x,-0.25,lerp_speed*delta)
 		gun.rotation.x = lerp(gun.rotation.x,gun_rotation,lerp_speed*delta)
 		gun.rotation.y = lerp(gun.rotation.y,deg_to_rad(-4),lerp_speed*delta)
-	
-			#var camera = $CameraController/Camera3D
-			#var space_state = camera.get_world_3d().direct_space_state #<--swiat w ktorym bedzie raycast
-			#var screen_center = get_viewport().size / 2
-			#var origin = camera.project_ray_origin(screen_center)
-			#var end = origin + camera.project_ray_normal(screen_center) * 5000
-			#var query = PhysicsRayQueryParameters3D.create(origin, end)
-			#query.collide_with_bodies = true
-			#var result = space_state.intersect_ray(query)
-			#if result:
-				#if result.collider.is_in_group("enemies"):
-					#result.collider.health -= 20
-					#print("hit")
+
 #PLAYER CONTROL
 
 func object_picking():
@@ -231,3 +204,46 @@ func enterCar():
 func camera_shake(recoil: float):
 	camera_pivot.rotation.x += recoil
 	camera_pivot.rotation_degrees.y += randf_range(-3.0,3.0)*recoil
+
+
+#funckja w komentaerzu bo kolidowała z gun recoil
+#func _unhandled_input(event: InputEvent) -> void:
+	#_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	#if _mouse_input:
+		#_rotation_input = -event.relative.x * MOUSE_SENSITIVITY / 10
+		#_tilt_input = -event.relative.y * MOUSE_SENSITIVITY / 10
+		
+	
+			#var camera = $CameraController/Camera3D
+			#var space_state = camera.get_world_3d().direct_space_state #<--swiat w ktorym bedzie raycast
+			#var screen_center = get_viewport().size / 2
+			#var origin = camera.project_ray_origin(screen_center)
+			#var end = origin + camera.project_ray_normal(screen_center) * 5000
+			#var query = PhysicsRayQueryParameters3D.create(origin, end)
+			#query.collide_with_bodies = true
+			#var result = space_state.intersect_ray(query)
+			#if result:
+				#if result.collider.is_in_group("enemies"):
+					#result.collider.health -= 20
+					#print("hit")
+					
+#DEVELOPER to samo co wcześniej funckja w komentaerzu bo kolidowała z gun recoil
+#func _update_camera(delta):
+	#_current_rotation = _rotation_input
+	#
+	## Rotates camera using euler rotation
+	#_mouse_rotation.x += _tilt_input * delta
+	#_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+	#_mouse_rotation.y += _rotation_input * delta
+	#
+	#_player_rotation = Vector3(0.0,_mouse_rotation.y,0.0)
+	#_camera_rotation = Vector3(_mouse_rotation.x,0.0,0.0)
+	#
+	#CAMERA_CONTROLLER.transform.basis = Basis.from_euler(_camera_rotation)
+	#global_transform.basis = Basis.from_euler(_player_rotation)
+	#
+	#CAMERA_CONTROLLER.rotation.z = 0.0
+	#
+	#_rotation_input = 0.0
+	#_tilt_input = 0.0
+	#
