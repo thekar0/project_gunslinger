@@ -64,6 +64,7 @@ func _ready() -> void:
 	Engine.time_scale = 1
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print(spawn_point)
 
 func _process(delta: float) -> void:
 	#_update_camera(delta)
@@ -104,13 +105,13 @@ func update_input(speed: float, delta) -> void:
 				if speed > 2:
 					gun._AnimInfo("Walk")
 				else:
-					print(speed)
+					#print(speed)
 					gun._AnimInfo("Idle")
 				var drop = speed * FRICTION * delta
 				velocity *= max(speed - drop, 0) / speed
-				print(speed)
+				#print(speed)
 			else:
-				print(speed)
+				#print(speed)
 				gun._AnimInfo("Idle")
 		else:
 			velocity = accelerate(wishdir, delta, AIR_ACCEL, MAX_SPEED_AIR)
@@ -185,8 +186,8 @@ func object_picking():
 func hurt():
 	ANIMATION_PLAYER.play("hit_player")
 	health -= 20
-	if health <= 0:
-		respawn()
+	#if health <= 0:
+		#respawn()
 
 func respawn():
 	Engine.time_scale = 0.3
