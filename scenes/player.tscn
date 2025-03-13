@@ -602,6 +602,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="DebugPanel" type="PanelContainer" parent="UI"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = 8.0
@@ -619,6 +620,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SettingsPanel" type="PanelContainer" parent="UI"]
+visible = false
 clip_contents = true
 layout_mode = 2
 offset_right = 1154.0
@@ -939,6 +941,20 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="DisplayHealth" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.789
+anchor_right = 0.12
+anchor_bottom = 0.789
+offset_left = -138.24
+offset_top = -136.272
+offset_right = 137.76
+offset_bottom = 136.728
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/DisplayHealth"]
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("9_silga")
