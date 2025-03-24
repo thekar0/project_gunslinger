@@ -940,6 +940,24 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_vertical = 0
 
+[node name="Magazine" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/Magazine"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.929715, 0.929715, 0.929715, 1)
+theme_override_font_sizes/font_size = 70
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("9_silga")
 CURRENT_STATE = NodePath("IdlePlayerState")
