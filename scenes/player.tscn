@@ -602,6 +602,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="DebugPanel" type="PanelContainer" parent="UI"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = 8.0
@@ -619,6 +620,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SettingsPanel" type="PanelContainer" parent="UI"]
+visible = false
 clip_contents = true
 layout_mode = 2
 offset_right = 1154.0
