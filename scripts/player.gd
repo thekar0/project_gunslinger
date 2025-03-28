@@ -65,13 +65,19 @@ func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	print(spawn_point)
+	gun.label.text = str(gun.mag_bullets)
 
 func _process(delta: float) -> void:
 	#_update_camera(delta)
 	CAMERA_CONTROLLER.rotation_degrees.z = 0
-	if can_shoot and is_on_floor():
+	if Input.is_action_just_pressed("reload"):
+		gun._reload()
+		gun.label.text = str(gun.mag_bullets)
+	
+	if can_shoot and is_on_floor() and gun.mag_bullets > 0:
 		if Input.is_action_just_pressed("shoot"):
 			gun._shoot(shoot_ray_cast,CAMERA_CONTROLLER,delta)
+			gun.label.text = str(gun.mag_bullets)
 	
 func _physics_process(delta: float) -> void:
 	enterCar()
@@ -145,20 +151,21 @@ func debug_screen(delta):
 #PLAYER CONTROL
 func aim_n_shoot(delta):
 	if Input.is_action_pressed("scope"):
-		cross_hair.visible = false
 		gun.position.x = lerp(gun.position.x,0.0,lerp_speed*delta)
 		gun.rotation.x = lerp(gun.rotation.x,-gun_rotation,lerp_speed*delta)
 		gun.rotation.y = lerp(gun.rotation.y,0.0,lerp_speed*delta)
-	if !Input.is_action_pressed("scope") and current_hand == "right":
-		cross_hair.visible = true
-		gun.position.x = lerp(gun.position.x,0.25,lerp_speed*delta)
+	else:
+		var hand_lerp
+		var hand_deg
+		if current_hand == "right":
+			hand_lerp = 0.25
+			hand_deg = 4
+		elif current_hand == "left":
+			hand_lerp = -0.25
+			hand_deg = -4
+		gun.position.x = lerp(gun.position.x,hand_lerp,lerp_speed*delta)
 		gun.rotation.x = lerp(gun.rotation.x,gun_rotation,lerp_speed*delta)
-		gun.rotation.y = lerp(gun.rotation.y,deg_to_rad(4),lerp_speed*delta)
-	if !Input.is_action_pressed("scope") and current_hand == "left":
-		cross_hair.visible = true
-		gun.position.x = lerp(gun.position.x,-0.25,lerp_speed*delta)
-		gun.rotation.x = lerp(gun.rotation.x,gun_rotation,lerp_speed*delta)
-		gun.rotation.y = lerp(gun.rotation.y,deg_to_rad(-4),lerp_speed*delta)
+		gun.rotation.y = lerp(gun.rotation.y,deg_to_rad(hand_deg),lerp_speed*delta)
 	
 #PLAYER CONTROL
 
