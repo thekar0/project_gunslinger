@@ -219,7 +219,7 @@ fadeout_time = 0.1
 animation = &"FP_walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5111r"]
-graph_offset = Vector2(-1.67621, 221.249)
+graph_offset = Vector2(-304.072, 44.1638)
 nodes/Movement/node = SubResource("AnimationNodeTransition_dltmc")
 nodes/Movement/position = Vector2(300, 200)
 nodes/fire/node = SubResource("AnimationNodeAnimation_xycra")
@@ -816,7 +816,7 @@ fadeout_time = 0.1
 animation = &"GUN_walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1lnhw"]
-graph_offset = Vector2(-560.889, -22.6929)
+graph_offset = Vector2(-441.007, -40.7487)
 nodes/Movement/node = SubResource("AnimationNodeTransition_6d8fc")
 nodes/Movement/position = Vector2(-100, 0)
 nodes/fire/node = SubResource("AnimationNodeAnimation_kswqb")
@@ -835,10 +835,10 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_exauf")
 
 [node name="MuzzleFlash" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.48653, -6.80109)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38977, -1.49966, -4.83597)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MuzzleFlash"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.738097, 0.163813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636457, 0.163813)
 material_override = SubResource("StandardMaterial3D_vbafm")
 emitting = false
 amount = 2
@@ -849,7 +849,7 @@ process_material = SubResource("ParticleProcessMaterial_rbhxk")
 draw_pass_1 = SubResource("QuadMesh_adljr")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.461345, 0.096251)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.538251, 0.096251)
 visible = false
 light_color = Color(0.964844, 0.939374, 0.31282, 1)
 light_energy = 6.0
@@ -875,8 +875,8 @@ bones/1/name = "hand_L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 6.98492e-08, 3.90346e-07, 3.90346e-07, 0, -1, -6.98492e-08, 1, 0, 0.0608393, 0.104951, 0.6201)
 bones/1/enabled = true
-bones/1/position = Vector3(-0.532204, -0.39696, -0.216812)
-bones/1/rotation = Quaternion(0.671786, -0.733611, -0.081475, -0.0622927)
+bones/1/position = Vector3(-0.527776, -0.400323, -0.216734)
+bones/1/rotation = Quaternion(0.680598, -0.725473, -0.0820659, -0.0611642)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "index_finger_01_L"
 bones/2/parent = 1
@@ -1022,8 +1022,8 @@ bones/22/name = "hand_R"
 bones/22/parent = 0
 bones/22/rest = Transform3D(-0.999391, 0.0348998, 3.96743e-07, -3.94881e-07, 1.78814e-07, -1, -0.0348998, -0.999391, 0, 0.0824435, 0.104951, -0.617599)
 bones/22/enabled = true
-bones/22/position = Vector3(-0.501239, -0.328561, -0.326967)
-bones/22/rotation = Quaternion(0.0605454, 0.0309525, -0.686342, -0.724093)
+bones/22/position = Vector3(-0.498462, -0.331243, -0.326919)
+bones/22/rotation = Quaternion(0.0603202, 0.0315358, -0.695029, -0.715753)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "index_finger_01_R"
 bones/23/parent = 22
@@ -1203,8 +1203,8 @@ bones/0/name = "gun_root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -8.45578e-18, 0.0422013, -0.0521465)
 bones/0/enabled = true
-bones/0/position = Vector3(-0.178895, -0.225403, -0.201911)
-bones/0/rotation = Quaternion(0, 0.712879, 0.701287, 0)
+bones/0/position = Vector3(-0.178895, -0.227521, -0.201911)
+bones/0/rotation = Quaternion(0, 0.697953, 0.716144, 0)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "slide"
 bones/1/parent = 0

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var player = null
 
-const SPEED = 6.0
+const SPEED = 4.0
 var health = 200
 
 @export var player_path : NodePath
@@ -24,3 +24,7 @@ func damage():
 	health-=20
 	if health<=0:
 		queue_free()
+
+
+func _on_navigation_agent_3d_target_reached() -> void:
+	player.hurt()
