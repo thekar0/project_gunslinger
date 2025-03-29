@@ -9,6 +9,8 @@ var health = 200
 
 @onready var nav_agent = $NavigationAgent3D
 
+var blood = preload("res://scenes/enemies/blood_decal.tscn")
+
 func _ready() -> void:
 	player = get_node(player_path)
 	
@@ -22,8 +24,12 @@ func _process(delta: float) -> void:
 
 func damage():
 	health-=20
+	var blood_stain = blood.instantiate()
+	get_tree().root.add_child(blood_stain)
+	blood_stain.global_transform.origin = $blood_spawn.global_transform.origin
 	if health<=0:
 		queue_free()
+	print($blood_fx.emitting)
 
 
 func _on_navigation_agent_3d_target_reached() -> void:

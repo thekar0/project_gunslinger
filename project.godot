@@ -18,10 +18,6 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 Global="*res://scripts/global.gd"
 
-[display]
-
-window/stretch/mode="viewport"
-
 [global_group]
 
 cars=""
