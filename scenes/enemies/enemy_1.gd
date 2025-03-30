@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var player = null
 
-const SPEED = 4.0
+const SPEED = 3.5
 var health = 200
 
 @export var player_path : NodePath
@@ -20,6 +20,8 @@ func _process(delta: float) -> void:
 		nav_agent.set_target_position(player.global_transform.origin)
 		var next_nav_point = nav_agent.get_next_path_position()
 		velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
+		look_at(Vector3(player.global_position.x,player.global_position.y,player.global_position.z),Vector3.UP)
+		rotation *= Vector3(0,1,0)
 		move_and_slide()
 
 func damage():
@@ -29,7 +31,7 @@ func damage():
 	blood_stain.global_transform.origin = $blood_spawn.global_transform.origin
 	if health<=0:
 		queue_free()
-	print($blood_fx.emitting)
+	$blood_fx.emitting = true
 
 
 func _on_navigation_agent_3d_target_reached() -> void:

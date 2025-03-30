@@ -40,9 +40,10 @@ use_3d_avoidance = true
 debug_enabled = true
 
 [node name="blood_fx" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
 material_override = SubResource("StandardMaterial3D_dw65s")
 emitting = false
-amount = 30
+amount = 20
 lifetime = 0.2
 one_shot = true
 explosiveness = 0.6
