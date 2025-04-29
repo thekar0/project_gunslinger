@@ -11,34 +11,35 @@ func _ready() -> void:
 
 
 func _on_general_pressed() -> void:
-	#$Graphics.visible = false
-	#$Audio.visible = false
 	$Controls.visible = false
+	$Crosshair.visible = false
 	$General.visible = true
 
 func _on_graphics_pressed() -> void:
 	$General.visible = false
-	#$Audio.visible = false
 	$Controls.visible = false
-	#$Graphics.visible = true
-#
+	$Crosshair.visible = false
+
 func _on_audio_pressed() -> void:
 	$General.visible = false
-	#$Graphics.visible = false
 	$Controls.visible = false
-	#$Audio.visible = true
+	$Crosshair.visible = false
 
 func _on_controls_pressed() -> void:
 	$General.visible = false
-	#Graphics.visible = false
-	#Audio.visible = false
+	$Crosshair.visible = false
 	$Controls.visible = true
+
+func _on_crosshair_pressed() -> void:
+	$General.visible = false
+	$Controls.visible = false
+	$Crosshair.visible = true
+
 
 func _on_exit_pressed() -> void:
 	$General.visible = true
-	#Graphics.visible = false
-	#Audio.visible = false
 	$Controls.visible = false
+	$Crosshair.visible = false
 	options_menu.visible = false
 	$"../SettingsPanel/MarginContainer".visible = true
 	set_process(false)
