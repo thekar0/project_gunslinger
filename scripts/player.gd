@@ -11,7 +11,7 @@ const JUMP_VELOCITY = 4
 const GRAVITY = 11
 
 # CAMERA MOVEMENT
-@export var MOUSE_SENSITIVITY : float = 0.2
+@export var MOUSE_SENSITIVITY : float = 0.1
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var ANIMATION_PLAYER : AnimationPlayer
@@ -81,8 +81,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# toggle_fullscreen = F11
 	if (event is InputEventMouseMotion) and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSITIVITY*0.5))
-		CAMERA_CONTROLLER.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSITIVITY*0.5))
+		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSITIVITY*0.1))
+		CAMERA_CONTROLLER.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSITIVITY*0.1))
 		CAMERA_CONTROLLER.rotation.x = clamp(CAMERA_CONTROLLER.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 	if event.is_action_pressed("toggle_fullscreen"):
 		if !is_fullscreen:

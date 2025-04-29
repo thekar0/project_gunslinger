@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://bnkv7hladjkdg" path="res://other/assets/Capture it.ttf" id="2_vv2eu"]
 [ext_resource type="Texture2D" uid="uid://bn7qv6ygd8a0q" path="res://other/assets/logobuniekstudios.png" id="3_o47i2"]
 
-
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -74,14 +73,6 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_vv2eu")
 theme_override_font_sizes/font_size = 28
 text = "Play"
-
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(140, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_vv2eu")
-theme_override_font_sizes/font_size = 28
-text = "Options"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(140, 60)

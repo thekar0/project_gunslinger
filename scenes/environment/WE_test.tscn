@@ -2,7 +2,6 @@
 
 [ext_resource type="Environment" uid="uid://dsay4gdr8k6ur" path="res://scenes/environment/WE_test.tres" id="1_cvy6j"]
 
-
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource("1_cvy6j")
 

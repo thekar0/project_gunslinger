@@ -2,6 +2,8 @@
 
 extends Control
 
+@onready var check_dynamic_crosshair: CheckButton = $"../../UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer5/CheckDynamicCrosshair"
+
 # DOT SETTINGS
 @export var DOT_RADIUS: float = 1.0
 @export var DOT_COLOR: Color = Color.WHITE
