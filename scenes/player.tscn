@@ -521,7 +521,7 @@ speed = 4.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/recoil"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, -4.42972e-05, 0, 4.42972e-05, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -0.00015054, 0, 0.00015054, 1, 0, 0, 0)
 current = true
 script = ExtResource("3_7n1oo")
 trauma_reduction_rate = 2.14
@@ -548,6 +548,7 @@ target_position = Vector3(0, 0, -20)
 
 [node name="PixelShader" type="MeshInstance3D" parent="CameraController/recoil/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.297654)
+visible = false
 mesh = SubResource("QuadMesh_tlsti")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -613,6 +614,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="DebugPanel" type="PanelContainer" parent="UI"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = 8.0
@@ -630,6 +632,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SettingsPanel" type="PanelContainer" parent="UI"]
+visible = false
 clip_contents = true
 layout_mode = 2
 offset_right = 1154.0
@@ -1069,6 +1072,24 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="Magazine" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/Magazine"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.929715, 0.929715, 0.929715, 1)
+theme_override_font_sizes/font_size = 70
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("9_silga")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dusddhrcfi7ko"]
+
+[ext_resource type="Script" path="res://scenes/enemies/enemy_1.gd" id="1_87o5b"]
+[ext_resource type="Texture2D" uid="uid://bs27tkc0wpkco" path="res://textures/blood/blood.png" id="2_360sf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0n2m"]
+albedo_color = Color(0.356863, 0.74902, 0.403922, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j1der"]
+material = SubResource("StandardMaterial3D_e0n2m")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aec4r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw65s"]
+transparency = 1
+albedo_texture = ExtResource("2_360sf")
+billboard_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qvajd"]
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_edei4"]
+
+[node name="enemy" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_87o5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_j1der")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_aec4r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+use_3d_avoidance = true
+debug_enabled = true
+
+[node name="blood_fx" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+material_override = SubResource("StandardMaterial3D_dw65s")
+emitting = false
+amount = 20
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_qvajd")
+draw_pass_1 = SubResource("QuadMesh_edei4")
+
+[node name="blood_spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00731, 0)
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
