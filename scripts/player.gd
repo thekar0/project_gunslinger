@@ -61,6 +61,7 @@ var can_move = true
 var gravity = 9.0
 
 func _ready() -> void:
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	Engine.time_scale = 1
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

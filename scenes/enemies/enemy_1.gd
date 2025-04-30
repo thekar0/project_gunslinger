@@ -2,10 +2,11 @@ extends CharacterBody3D
 
 @onready var player = null
 
-const SPEED = 3.5
+
 var health = 200
 
 @export var player_path : NodePath
+@export var SPEED = 3.5
 
 @onready var nav_agent = $NavigationAgent3D
 
