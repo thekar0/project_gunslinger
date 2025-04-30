@@ -74,14 +74,6 @@ theme_override_fonts/font = ExtResource("2_vv2eu")
 theme_override_font_sizes/font_size = 28
 text = "Play"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(140, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_vv2eu")
-theme_override_font_sizes/font_size = 28
-text = "Options"
-
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(140, 60)
 layout_mode = 2

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/gun.gd" id="1_exauf"]
 [ext_resource type="Texture2D" uid="uid://wxvtyim1v75n" path="res://particles/scorch_02.png" id="2_n4y82"]
 [ext_resource type="Animation" uid="uid://dvni62uvfd7nf" path="res://models/hands/FP_idle_definitive.res" id="3_h4o6d"]
-[ext_resource type="Texture2D" uid="uid://c611rx0v7ufyb" path="res://guns/glock/glock_Untitled.png" id="3_qcove"]
 [ext_resource type="Animation" uid="uid://csqxyd3ofboxq" path="res://models/hands/FP_walk_definitive.res" id="4_n2t3p"]
+[ext_resource type="Texture2D" uid="uid://4lg5dm5y0835" path="res://guns/glock/glock_texture_Base_color.png" id="5_g3a2w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbafm"]
 transparency = 3
@@ -219,7 +219,7 @@ fadeout_time = 0.1
 animation = &"FP_walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5111r"]
-graph_offset = Vector2(-304.072, 44.1638)
+graph_offset = Vector2(-252.615, 121.353)
 nodes/Movement/node = SubResource("AnimationNodeTransition_dltmc")
 nodes/Movement/position = Vector2(300, 200)
 nodes/fire/node = SubResource("AnimationNodeAnimation_xycra")
@@ -590,7 +590,7 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f53r"]
 resource_name = "Material"
 cull_mode = 2
-albedo_texture = ExtResource("3_qcove")
+albedo_texture = ExtResource("5_g3a2w")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e6two"]
@@ -859,7 +859,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5.41893, -6.36113)
 target_position = Vector3(0, 0, -2)
 
 [node name="hands" type="Node3D" parent="."]
-transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
+transform = Transform3D(-5, 0, -7.54979e-07, 0, 5, 0, 7.54979e-07, 0, -5, 0, 0, 0)
 
 [node name="Hand_rig" type="Node3D" parent="hands"]
 
@@ -875,8 +875,8 @@ bones/1/name = "hand_L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 6.98492e-08, 3.90346e-07, 3.90346e-07, 0, -1, -6.98492e-08, 1, 0, 0.0608393, 0.104951, 0.6201)
 bones/1/enabled = true
-bones/1/position = Vector3(-0.533307, -0.399731, -0.216831)
-bones/1/rotation = Quaternion(0.670512, -0.734771, -0.0813892, -0.0624541)
+bones/1/position = Vector3(-0.524274, -0.38862, -0.216673)
+bones/1/rotation = Quaternion(0.687552, -0.718909, -0.0825284, -0.0602581)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "index_finger_01_L"
 bones/2/parent = 1
@@ -1022,8 +1022,8 @@ bones/22/name = "hand_R"
 bones/22/parent = 0
 bones/22/rest = Transform3D(-0.999391, 0.0348998, 3.96743e-07, -3.94881e-07, 1.78814e-07, -1, -0.0348998, -0.999391, 0, 0.0824435, 0.104951, -0.617599)
 bones/22/enabled = true
-bones/22/position = Vector3(-0.501958, -0.331532, -0.32698)
-bones/22/rotation = Quaternion(0.0605969, 0.0308149, -0.684289, -0.726035)
+bones/22/position = Vector3(-0.496293, -0.319026, -0.326881)
+bones/22/rotation = Quaternion(0.0601343, 0.0319979, -0.701886, -0.709025)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "index_finger_01_R"
 bones/23/parent = 22
@@ -1193,7 +1193,7 @@ libraries = {
 }
 
 [node name="glock2" type="Node3D" parent="."]
-transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
+transform = Transform3D(-5, 0, -7.54979e-07, 0, 5, 0, 7.54979e-07, 0, -5, 0, 0, 0)
 
 [node name="Gun_rig" type="Node3D" parent="glock2"]
 transform = Transform3D(1.56115, 0, 0, 0, 1.56115, 0, 0, 0, 1.56115, 0, 0.139654, 0.940363)
@@ -1203,8 +1203,8 @@ bones/0/name = "gun_root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -8.45578e-18, 0.0422013, -0.0521465)
 bones/0/enabled = true
-bones/0/position = Vector3(-0.178895, -0.226767, -0.201911)
-bones/0/rotation = Quaternion(0, 0.713291, 0.700868, 0)
+bones/0/position = Vector3(-0.178895, -0.223548, -0.201911)
+bones/0/rotation = Quaternion(0, 0.707227, 0.706987, 0)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "slide"
 bones/1/parent = 0

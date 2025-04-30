@@ -27,6 +27,7 @@ func pauseMenu():
 		#$"../OptionsMenu/Graphics".visible = false
 		#$"../OptionsMenu/Audio".visible = false
 		$"../OptionsMenu/Controls".visible = false
+		$"../OptionsMenu/Crosshair".visible = false
 	else:
 		Engine.time_scale = 0
 		hide()

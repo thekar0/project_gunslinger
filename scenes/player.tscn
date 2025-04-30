@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=50 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wnx40"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://other/materials/player.tres" id="2_g6c3t"]
@@ -19,9 +19,20 @@
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="12_gwekm"]
 [ext_resource type="Script" path="res://scripts/state/SprintingPlayerState.gd" id="12_kk8u2"]
 [ext_resource type="Script" path="res://scripts/state/CrouchingPlayerState.gd" id="13_m0msa"]
+[ext_resource type="Script" path="res://scripts/settings/crosshair.gd" id="14_u21i2"]
 [ext_resource type="Script" path="res://scripts/state/SlidingPlayerState.gd" id="14_xs3ub"]
 [ext_resource type="Script" path="res://scripts/state/JumpingPlayerState.gd" id="15_8fjkh"]
+[ext_resource type="Texture2D" uid="uid://cqx6ohtthq4pa" path="res://assets/crosshair_color_icons/color_icon_white.png" id="15_mxvxt"]
+[ext_resource type="Texture2D" uid="uid://738qadtcs6jr" path="res://assets/crosshair_color_icons/color_icon_black.png" id="16_75bg4"]
 [ext_resource type="Script" path="res://scripts/state/FallingPlayerState.gd" id="16_iaktl"]
+[ext_resource type="Texture2D" uid="uid://bj6wj6a0iqbr8" path="res://assets/crosshair_color_icons/color_icon_green.png" id="17_c7gfp"]
+[ext_resource type="Texture2D" uid="uid://de35cmal1uu73" path="res://assets/crosshair_color_icons/color_icon_red.png" id="18_wcv02"]
+[ext_resource type="Texture2D" uid="uid://dokd5s5pnvct1" path="res://assets/crosshair_color_icons/color_icon_blue.png" id="19_80wad"]
+[ext_resource type="Texture2D" uid="uid://dw1x6yxh1rrps" path="res://assets/crosshair_color_icons/color_icon_yellow.png" id="20_qoeka"]
+[ext_resource type="Texture2D" uid="uid://c2ik01vy54pea" path="res://assets/crosshair_color_icons/color_icon_orange.png" id="21_v8smy"]
+[ext_resource type="Texture2D" uid="uid://dxr8hv63awcji" path="res://assets/crosshair_color_icons/color_icon_cyan.png" id="22_3otch"]
+[ext_resource type="Texture2D" uid="uid://bsvpkjv7rp8oc" path="res://assets/crosshair_color_icons/color_icon_pink.png" id="23_rit5c"]
+[ext_resource type="Texture2D" uid="uid://c062fnrh5wwxk" path="res://assets/crosshair_color_icons/color_icon_purple.png" id="24_8fhjb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_umwbx"]
 
@@ -686,7 +697,7 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 100
+theme_override_constants/separation = 64
 
 [node name="General" type="Button" parent="UI/OptionsMenu/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
@@ -696,22 +707,6 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "General"
 
-[node name="Graphics" type="Button" parent="UI/OptionsMenu/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 20
-text = "Graphics"
-
-[node name="Audio" type="Button" parent="UI/OptionsMenu/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 20
-text = "Audio"
-
 [node name="Controls" type="Button" parent="UI/OptionsMenu/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
@@ -719,6 +714,14 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Controls"
+
+[node name="Crosshair" type="Button" parent="UI/OptionsMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Crosshair"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/OptionsMenu/MarginContainer"]
 layout_mode = 2
@@ -845,6 +848,133 @@ size_flags_horizontal = 4
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "Reset To Default"
+
+[node name="Crosshair" type="Control" parent="UI/OptionsMenu"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("14_u21i2")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/OptionsMenu/Crosshair"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 135.0
+offset_top = -570.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/OptionsMenu/Crosshair/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Crosshair Lines Width: "
+
+[node name="LinesWidth" type="LineEdit" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+max_length = 6
+clear_button_enabled = true
+caret_mid_grapheme = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Crosshair Lines Length: "
+
+[node name="LinesLength" type="LineEdit" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+max_length = 6
+clear_button_enabled = true
+caret_mid_grapheme = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Crosshair Lines Gap: "
+
+[node name="LinesGap" type="LineEdit" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+max_length = 6
+clear_button_enabled = true
+caret_mid_grapheme = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Color: "
+
+[node name="ColorChange" type="OptionButton" parent="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 10
+popup/item_0/text = "White"
+popup/item_0/icon = ExtResource("15_mxvxt")
+popup/item_0/id = 1
+popup/item_1/text = "Black"
+popup/item_1/icon = ExtResource("16_75bg4")
+popup/item_1/id = 2
+popup/item_2/text = "Green"
+popup/item_2/icon = ExtResource("17_c7gfp")
+popup/item_2/id = 3
+popup/item_3/text = "Red"
+popup/item_3/icon = ExtResource("18_wcv02")
+popup/item_3/id = 4
+popup/item_4/text = "Blue"
+popup/item_4/icon = ExtResource("19_80wad")
+popup/item_4/id = 5
+popup/item_5/text = "Yellow"
+popup/item_5/icon = ExtResource("20_qoeka")
+popup/item_5/id = 6
+popup/item_6/text = "Orange"
+popup/item_6/icon = ExtResource("21_v8smy")
+popup/item_6/id = 7
+popup/item_7/text = "Cyan"
+popup/item_7/icon = ExtResource("22_3otch")
+popup/item_7/id = 8
+popup/item_8/text = "Pink"
+popup/item_8/icon = ExtResource("23_rit5c")
+popup/item_8/id = 9
+popup/item_9/text = "Purple"
+popup/item_9/icon = ExtResource("24_8fhjb")
+popup/item_9/id = 10
 
 [node name="Inventory" type="PanelContainer" parent="UI"]
 visible = false
@@ -992,12 +1122,15 @@ script = ExtResource("16_iaktl")
 [connection signal="pressed" from="UI/SettingsPanel/MarginContainer/VBoxContainer/Options" to="UI/SettingsPanel" method="_on_options_pressed"]
 [connection signal="pressed" from="UI/SettingsPanel/MarginContainer/VBoxContainer/Quit" to="UI/SettingsPanel" method="_on_quit_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/MarginContainer/HBoxContainer/General" to="UI/OptionsMenu" method="_on_general_pressed"]
-[connection signal="pressed" from="UI/OptionsMenu/MarginContainer/HBoxContainer/Graphics" to="UI/OptionsMenu" method="_on_graphics_pressed"]
-[connection signal="pressed" from="UI/OptionsMenu/MarginContainer/HBoxContainer/Audio" to="UI/OptionsMenu" method="_on_audio_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/MarginContainer/HBoxContainer/Controls" to="UI/OptionsMenu" method="_on_controls_pressed"]
+[connection signal="pressed" from="UI/OptionsMenu/MarginContainer/HBoxContainer/Crosshair" to="UI/OptionsMenu" method="_on_crosshair_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/MarginContainer/VBoxContainer/Exit" to="UI/OptionsMenu" method="_on_exit_pressed"]
 [connection signal="value_changed" from="UI/OptionsMenu/General/MarginContainer/VBoxContainer/FOVChange" to="UI/OptionsMenu/General" method="_on_fov_change_value_changed"]
 [connection signal="value_changed" from="UI/OptionsMenu/General/MarginContainer/VBoxContainer/SensitivityChange" to="UI/OptionsMenu/General" method="_on_sensitivity_change_value_changed"]
 [connection signal="pressed" from="UI/OptionsMenu/General/MarginContainer/VBoxContainer/HBoxContainer/Left" to="UI/OptionsMenu/General" method="_on_left_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/General/MarginContainer/VBoxContainer/HBoxContainer/Right" to="UI/OptionsMenu/General" method="_on_right_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/Controls/MarginContainer/VBoxContainer/ResetButton" to="UI/OptionsMenu/Controls" method="_on_reset_button_pressed"]
+[connection signal="text_changed" from="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer/LinesWidth" to="UI/OptionsMenu/Crosshair" method="_on_lines_width_text_changed"]
+[connection signal="text_changed" from="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer3/LinesLength" to="UI/OptionsMenu/Crosshair" method="_on_lines_length_text_changed"]
+[connection signal="text_changed" from="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer4/LinesGap" to="UI/OptionsMenu/Crosshair" method="_on_lines_gap_text_changed"]
+[connection signal="item_selected" from="UI/OptionsMenu/Crosshair/MarginContainer/VBoxContainer/HBoxContainer2/ColorChange" to="UI/OptionsMenu/Crosshair" method="_on_color_change_item_selected"]
